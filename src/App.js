@@ -18,14 +18,9 @@ function App() {
 
     if (screenData.length > 0 && val === '='){
       setTempVal('=');
-      // const numbersStrArr = screenData.split(screenData.match(/[+-/*]/g));
-      // const num1 = parseInt(numbersStrArr[0]);
-      // const num2 = parseInt(numbersStrArr[1]);
-      // console.log(operateVal);
-
     }
-    else {
-      
+    else if (val === 'c') {
+      setTempVal('c');
     }
   }
 
@@ -34,17 +29,25 @@ function App() {
         const numbersStrArr = screenData.split(screenData.match(/[+-/*]/g));
         const num1 = parseInt(numbersStrArr[0]);
         const num2 = parseInt(numbersStrArr[1]);
-        setScreenData(num1 * num2);
+        if ((screenData.includes('+'))) {
+          setScreenData(num1 + num2);
+        }
+        else if ((screenData.includes('-'))) {
+          setScreenData(num1 - num2);
+        }
+        else if ((screenData.includes('*'))) {
+          setScreenData(num1 * num2);
+        }
+        else if ((screenData.includes('/'))) {
+          setScreenData(num1 / num2);
+        }  
+    }
+    else if (tempVal === 'c') {
+      setScreenData('');
     }
   }, [tempVal])
 
-  useEffect(() => {
-      
-    setTempVal(67);
-  }, [])
 
-  let temp = '';
-  
 
   return (
     <div className="App">
