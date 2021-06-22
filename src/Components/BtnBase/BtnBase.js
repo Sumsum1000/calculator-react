@@ -1,11 +1,15 @@
 import './BtnBase.css';
 
-const BtnBase = ({valBase,valOp, displayVal}) => {  // {valBase,valOp, displayVal}
+const BtnBase = ({val, onClickBase}) => {  // {valBase,valOp, displayVal}
+
+    onClickBase = () =>{
+        console.log('2 Im BtnBase');
+    }
 
   
     return (
         <div className='btn-root'>
-            <h3 onClick={() => displayVal(valBase)} valOp={valOp}>{valBase}</h3>
+            <h3 onClick={onClickBase} >{val}</h3>
         </div>
     )
 }
