@@ -9,10 +9,25 @@ function App() {
   const btnValues = [1, 2, 3, '+', 4, 5, 6, '-', 7, 8, 9, '*', 'c', 0, '=', '/'];
   const [screenData, setScreenData] = useState('');
 
-  const figure = 1;
 
   const showOnScreen = (val) => {
-    setScreenData(screenData + val);
+    if (val === '=') {
+      const regex = /[+-/*]/g;
+      const operator = screenData.match(regex);
+      console.log(screenData);
+      console.log(operator.join(''));
+      const numsStr = screenData.split(operator);
+      const num1 = parseInt(numsStr[0]);
+      const num2 = parseInt(numsStr[1]);
+
+      setScreenData(operator);
+    }
+
+
+    else{
+      setScreenData(screenData + val);
+    }
+  
 }
 
   return (
@@ -20,11 +35,8 @@ function App() {
       <div className='calc-body'>
         <Screen btnFigure={screenData}/>
         <div className='btns-container'>
-          {btnValues.map(element => <BtnBase displayVal={showOnScreen} valBase={element}
-                                    valOp={element}/>)}
+          {btnValues.map(element => <BtnBase displayVal={showOnScreen} valBase={element}/>)}
         </div>
-     
-        {/* <BtnNum printNum={print} val={figure}/> */}
       </div>
     </div>
   );
